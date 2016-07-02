@@ -15,7 +15,7 @@
 	"permissions": ["tabs", "http://localhost/"],
 	"content_scripts": [{
 		"all_frames": true,
-		"matches": ["http://www.bilibili.com/*"],
+		"matches": ["http://*.bilibili.com/*"],
 		"js": ["loadxmldoc.js", "jquery-2.2.4.js", "content_script.js"]
 	}]
 }

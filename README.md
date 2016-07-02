@@ -12,7 +12,7 @@ Chrome插件，提供视频网站哔哩哔哩(bilibili.com)的弹幕数量分布
 
 ## Publication 发行
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/bilibili-danmu-helper/gobbhgbhngcmegjdnnlfoebhholmhcmj?utm_source=gmail)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/bilibili-danmu-helper/gobbhgbhngcmegjdnnlfoebhholmhcmj)
 
 ## License 许可
 
