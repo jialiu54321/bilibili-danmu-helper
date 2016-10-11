@@ -3,7 +3,8 @@ var zh = {
     author: "作者: ",
     graphTitle: "作战本部空间指南",
     versionInfo: "版本 ",
-    loading: "正在读取...(╯‵□′)╯︵┻━┻"
+    loading: "正在读取...(╯‵□′)╯︵┻━┻",
+    danmuNum: "弹幕数量"
 };
 
 var en = {
@@ -11,5 +12,6 @@ var en = {
     author: "Author: ",
     graphTitle: "Find Video Highlights Here",
     versionInfo: "Version ",
-    loading: "Loading...(╯‵□′)╯︵┻━┻"
+    loading: "Loading...(╯‵□′)╯︵┻━┻",
+    danmuNum: "Number of Danmu"
 };
