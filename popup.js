@@ -23,7 +23,7 @@ $('input[type=radio][name=language]').change(function() {
 var updateText = function () {
 	$("#message").text(text.thankyou);
 	$("#author").text(text.author);
-	$("#version").text(text.versionInfo + "0.0.4");
+	$("#version").text(text.versionInfo + "0.0.5");
 }
 
 var updatePop = function () {
