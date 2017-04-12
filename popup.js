@@ -6,9 +6,6 @@ $('#authorLink').click(function() {
 	 chrome.tabs.create({url: $(this).attr('href')});
 });
 
-$('#videoTitle button').click(function () {
-	updatePop();
-});
 
 $('input[type=radio][name=language]').change(function() {
 	if (this.value == "en"){
@@ -17,16 +14,31 @@ $('input[type=radio][name=language]').change(function() {
 	if (this.value == "zh"){
 		text = zh;
 	}
+	updateText();
 	updatePop();
 });
 
 var updateText = function () {
 	$("#message").text(text.thankyou);
 	$("#author").text(text.author);
-	$("#version").text(text.versionInfo + "0.0.5");
-}
+	$("#version").text(text.versionInfo + "0.0.6");
+	$('#videoTitle a').text(text.loading);
+
+	console.log("language updated");
+};
+
+var requestToUpdate = function () {
+	chrome.runtime.sendMessage(
+		{
+			type: "requestToUpdate",
+		},
+		function(response) {
+			console.log("requestToUpdate send");
+		});
+};
 
 var updatePop = function () {
+	console.log("updatePop running");
 
 	var cid = chrome.extension.getBackgroundPage().danmuData["currentCID"];
 
@@ -35,15 +47,15 @@ var updatePop = function () {
 		return;
 	}
 
-	console.log("updatePop running");
-
-	updateText();
-
 	var xAxisData = [];
 	var danmuSeriesData = [];
 
 	var data = chrome.extension.getBackgroundPage().danmuData[cid];
 	console.log(data);
+
+	if (!data) {
+		return;
+	}
 
 	for (i = 0; i < data.blockNum; i++) {
 		var h = parseInt(i * data.blockLength / 3600);
@@ -56,26 +68,34 @@ var updatePop = function () {
 	}
 	$("#videoTitle a").text(data.title);
 
-	$('#graphContainer').highcharts({
+
+	Highcharts.chart('graphContainer', {
+		title: {
+			text: text.graphTitle,
+		},
+		xAxis: {
+			categories: xAxisData,
+		},
+		yAxis: {
 			title: {
-					text: text.graphTitle,
+				text: "",
 			},
-			xAxis: {
-					categories: xAxisData,
-			},
-			yAxis: {
-					title: {
-							text: "",
-					},
-			},
-			series: [{
-					name: text.danmuNum,
-					data: danmuSeriesData,
-					color: 'rgb(234, 67, 53)',
-			},]
+		},
+		series: [{
+			name: text.danmuNum,
+			data: danmuSeriesData,
+			color: 'rgb(234, 67, 53)',
+		},]
 	});
+
 	console.log("graph updated");
 };
+
+document.getElementById("refreshBtn").addEventListener("click", function() {
+	console.log("refresh btn clicked");
+	requestToUpdate();
+	updatePop();
+});
 
 var addListener = function () {
 	chrome.runtime.onMessage.addListener(
@@ -91,3 +111,11 @@ var addListener = function () {
 document.addEventListener('DOMContentLoaded', addListener);
 document.addEventListener('DOMContentLoaded', updateText);
 document.addEventListener('DOMContentLoaded', updatePop);
+document.addEventListener('load', addListener);
+document.addEventListener('load', updateText);
+document.addEventListener('load', updatePop);
+$(document).ready(function() {
+	addListener();
+	updateText();
+	updatePop();
+});

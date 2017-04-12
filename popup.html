@@ -8,9 +8,10 @@
 		<link rel="stylesheet" type="text/css" href="popup.css" />
 	</head>
 <body>
-  <p id="message"></p>
-	<p id="videoTitle"><a></a><button>Refresh</button></p>
-	<div id="graphContainer" style="min-width: 400px; height: 200px; margin: 0 auto"></div>
+  	<p id="message"></p>
+	<p id="videoTitle"><a></a></p>
+	<div id="graphContainer"></div>
+	<p style="text-align: center"><button id="refreshBtn">Refresh</button></p>
 	<div>
 		<form id="language">
 			<a>Language: </a>
@@ -22,10 +23,11 @@
 		<a id="author"></a><a id="authorLink" href="http://jialiu54321.com/">@JiaLiu54321</a>
 	</p>
 	<p style="display:flex;align-items:center;"><img src="BiliBH_48.png"></img><a id="version"></a></p>
+
+	<script type="text/javascript" src="jquery-2.2.4.js"></script>
+	<script type="text/javascript" src="highcharts.js"></script>
+	<script type="text/javascript" src="/modules/exporting.js"></script>
+	<script type="text/javascript" src="text.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
 </body>
-<script src="jquery-2.2.4.js"></script>
-<script src="text.js"></script>
-<script src="popup.js"></script>
-<script src="highcharts.js"></script>
-<script src="/modules/exporting.js"></script>
 </html>
